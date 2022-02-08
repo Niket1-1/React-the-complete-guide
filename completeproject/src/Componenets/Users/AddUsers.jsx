@@ -7,14 +7,23 @@ import classes from "./AddUser.module.css"
 const AddUser =(props)=>{
     const [enteredUsername,setEnteredUsername]=useState("")
     const [enteredAge,setEnteredAge]=useState("")
+    const [error,seterror]=useState()
     
 
     const adduserhandler =(event)=>{
         event.preventDefault();
         if(enteredUsername.trim().length===0 || enteredAge.trim().length===0){
+            seterror({
+                title:"Error",
+                message:"enter correct username and age"
+            })
                  return;
         }
         if(+enteredAge<1){
+            seterror({
+                title:"Error",
+                message:"enter age > 1"
+            })
             return;
         }
       
@@ -31,9 +40,15 @@ const AddUser =(props)=>{
     const usernamechange=(event)=>{
         setEnteredUsername(event.target.value)
 }
+ 
+
+   const errorHandler=()=>{
+       seterror(null)
+   }
+     
     return (
         <>
-        <ErrrorModel  title="An error Occured " message ="Something is wrong" />
+      {error&&  <ErrrorModel  title={error.title} message ={error.message} onConfirm={errorHandler}/>}
         <Card className={classes.input}>
     <form onSubmit={adduserhandler}>
         <label htmlFor="username">Username</label>
