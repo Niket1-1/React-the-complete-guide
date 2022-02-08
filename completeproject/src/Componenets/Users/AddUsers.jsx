@@ -6,7 +6,7 @@ import classes from "./AddUser.module.css"
 const AddUser =()=>{
     const [enteredUsername,setEnteredUsername]=useState("")
     const [enteredAge,setEnteredAge]=useState("")
-
+    
 
     const adduserhandler =(event)=>{
         event.preventDefault();
@@ -16,7 +16,9 @@ const AddUser =()=>{
         if(+enteredAge<1){
             return;
         }
+      
         console.log(enteredUsername,enteredAge)
+        
         setEnteredAge("")
         setEnteredUsername("")
     };
@@ -37,6 +39,7 @@ const AddUser =()=>{
         <input type="number" id="age" value={enteredAge} onChange={agechange} />
      <Button type="submit">Add User</Button>
     </form>
+   
     </Card>
     )
 }
