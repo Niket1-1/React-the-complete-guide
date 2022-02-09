@@ -5,6 +5,7 @@ import CartIcon from './foodDeliveryComponenets/Cart/CartIcon';
 
 
 import Header from './foodDeliveryComponenets/Layout/Header';
+import Meals from './foodDeliveryComponenets/Meals/Meals';
 
 
 
@@ -37,6 +38,9 @@ function App() {
     <UsersList users={userslist} /> */}
 
   <Header />
+  <main>
+    <Meals/>
+  </main>
 
  </>
   );
