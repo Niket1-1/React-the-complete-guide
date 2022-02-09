@@ -1,5 +1,17 @@
 
+import { Fragment } from 'react';
 import './App.css';
+import CartIcon from './foodDeliveryComponenets/Cart/CartIcon';
+
+
+import Header from './foodDeliveryComponenets/Layout/Header';
+
+
+
+
+
+
+
 // import AddUser from './Componenets/Users/AddUsers';
 // import UsersList from './Componenets/Users/UseraList';
 // import { useState } from 'react';
@@ -20,10 +32,13 @@ function App() {
 
 
   return (
-    <div>
+  <>
     {/* <AddUser  onAddUser={addUserHnadler}/>
     <UsersList users={userslist} /> */}
-    </div>
+
+  <Header />
+
+ </>
   );
 }
 
