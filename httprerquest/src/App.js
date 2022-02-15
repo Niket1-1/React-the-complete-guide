@@ -7,7 +7,7 @@ function App() {
 
   const [movies,setMovies]=useState([])
   const [isloading,setisloding]=useState(false);
-
+  const [error,seterror]=useState(null)
 
 
   // const dummyMovies = [
@@ -28,19 +28,33 @@ function App() {
 
 
  async function fetchmovie(){
-   setisloding(true)
- const res= await  fetch("https://swapi.dev/api/films/")
-   const data=await res.json();
-      const transformedMovies=data.results.map(movieData=>{
-        return {
-          id:movieData.episode_id,
-          title:movieData.title,
-          openingText:movieData.opening_crawl,
-          releaseDate:movieData.release_date
-        }
-      });
-     setMovies(transformedMovies)
-     setisloding(false)
+   setisloding(true);
+   seterror(null)
+ try{
+  const res= await  fetch("https://swapi.dev/api/films/")
+  if(!res.ok){
+    throw new Error('Something went wrong')
+  }
+
+  const data=await res.json();
+
+ 
+     const transformedMovies=data.results.map(movieData=>{
+       return {
+         id:movieData.episode_id,
+         title:movieData.title,
+         openingText:movieData.opening_crawl,
+         releaseDate:movieData.release_date
+       }
+     });
+    setMovies(transformedMovies)
+  
+ }catch(error){
+    seterror(error.message)
+    
+ }
+
+ setisloding(false)
   
 
 
@@ -54,8 +68,9 @@ function App() {
        {!isloading && movies.length!=0 && <MoviesList movies={movies} />}
        {!isloading && movies.length===0 && <p>No movies Found</p>}
        {isloading && <p>Loading</p>}
-    
+        {!isloading && error && <p>{error}</p>}
       </section>
+
     </React.Fragment>
   );
 }
