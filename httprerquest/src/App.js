@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useCallback, useEffect} from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -27,7 +27,7 @@ function App() {
 
 
 
- async function fetchmovie(){
+ const  fetchmovie=useCallback(async()=>{
    setisloding(true);
    seterror(null)
  try{
@@ -55,7 +55,12 @@ function App() {
  }
 
  setisloding(false)
-}
+ },[]);
+
+
+ useEffect(()=>{
+   fetchmovie()
+ },[fetchmovie])
 
  var content =<p>Loading</p>;
   if(movies.length>0){
