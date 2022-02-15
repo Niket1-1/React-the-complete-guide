@@ -23,10 +23,9 @@ function App() {
 
 
 
-  function fetchmovie(){
-    fetch("https://swapi.dev/api/films/").then(res=>{
-      return res.json();
-    }).then(data=>{
+ async function fetchmovie(){
+ const res= await  fetch("https://swapi.dev/api/films/")
+   const data=await res.json();
       const transformedMovies=data.results.map(movieData=>{
         return {
           id:movieData.episode_id,
@@ -36,7 +35,7 @@ function App() {
         }
       });
      setMovies(transformedMovies)
-    }) .catch();
+  
 
 
   }
