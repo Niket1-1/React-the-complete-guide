@@ -49,30 +49,35 @@ function App() {
      });
     setMovies(transformedMovies)
   
- }catch(error){
+    }catch(error){
     seterror(error.message)
     
  }
 
  setisloding(false)
-  
+}
 
-
+ var content =<p>Loading</p>;
+  if(movies.length>0){
+    content=<MoviesList movies={movies}/>
   }
-  return (
+
+ if(error){
+   content=<p>{error}</p>
+ }
+ if(isloading){
+   content=<p>Loading</p>
+ }
+
+
+ return (
     <React.Fragment>
       <section>
         <button onClick={fetchmovie}>Fetch Movies</button>
       </section>
-      <section>
-       {!isloading && movies.length!=0 && <MoviesList movies={movies} />}
-       {!isloading && movies.length===0 && <p>No movies Found</p>}
-       {isloading && <p>Loading</p>}
-        {!isloading && error && <p>{error}</p>}
-      </section>
+      <section>{content}</section>
 
     </React.Fragment>
   );
-}
-
+  };
 export default App;
