@@ -51,8 +51,10 @@ function App() {
         <button onClick={fetchmovie}>Fetch Movies</button>
       </section>
       <section>
-       {!isloading && <MoviesList movies={movies} />}
+       {!isloading && movies.length!=0 && <MoviesList movies={movies} />}
+       {!isloading && movies.length===0 && <p>No movies Found</p>}
        {isloading && <p>Loading</p>}
+    
       </section>
     </React.Fragment>
   );
